@@ -1,0 +1,12 @@
+.nav-wrapper {
+  height: 6.9vh;
+}
+
+.auth-block {
+  background-image: url('/assets/CatCafeLycyanBrit.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 93.1vh;
+  width: auto;
+}
