@@ -1,0 +1,5 @@
+config/keys.js
+client/.angular/cache/
+client/etc
+node_modules
+client/node_modules
