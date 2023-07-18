@@ -21,12 +21,12 @@ module.exports.login = async function(req, res) {
       })
     } else {
       res.status(401).json({
-        message: 'Пароли не совпадают. Попробуйте снова.'
+        message: "The passwords don't match. Try again."
       })
     }
   } else {
     res.status(404).json({
-      message: 'Пользователь с таким email не найден.'
+      message: 'No user with this email was found.'
     })
   }
 }
@@ -37,7 +37,7 @@ module.exports.register = async function(req, res) {
 
   if (candidate) {
     res.status(409).json({
-      message: 'Такой email уже занят. Попробуйте другой.'
+      message: 'This email is already taken. Try another one.'
     })
   } else {
     const salt = bcrypt.genSaltSync(10)

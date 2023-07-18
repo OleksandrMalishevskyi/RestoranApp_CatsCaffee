@@ -22,10 +22,10 @@ module.exports.getById = async function(req, res) {
 
 module.exports.remove = async function(req, res) {
   try {
-    await Category.remove({_id: req.params.id})
-    await Position.remove({category: req.params.id})
+    await Category.deleteOne({_id: req.params.id})
+    await Position.deleteMany({category: req.params.id}) 
     res.status(200).json({
-      message: 'Категория удалена.'
+      message: 'Category removed.'
     })
   } catch (e) {
     errorHandler(res, e)
