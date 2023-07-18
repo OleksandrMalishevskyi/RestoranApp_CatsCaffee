@@ -1,0 +1,65 @@
+<div class="row orange lighten-5">
+  <div class="col s12">
+    <div class="page-subtitle">
+      <h4>Positions:</h4>
+      <button class="waves-effect waves-light btn deep-orange darken-1 btn-small" (click)="onAddPosition()">
+        Add a position
+      </button>
+    </div>
+
+    <div *ngIf="!loading; else loader">
+      <div class="collection " *ngIf="positions.length !== 0; else empty">
+        <a *ngFor="let position of positions" class="collection-item collection-item-icon yellow accent-1"
+          (click)="onSelectPosition(position)">
+          <span>
+            {{position.name}} <strong>{{position.cost}} $.</strong>
+          </span>
+          <span>
+              <i class="material-icons" (click)="onDeletePosition($event, position)">delete</i>
+          </span>
+        </a>
+      </div>
+      <ng-template #empty>
+        <div class="center">There are no items in the category</div>
+      </ng-template>
+    </div>
+    <ng-template #loader>
+      <app-loader></app-loader>
+    </ng-template>
+  </div>
+</div>
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="modal orange lighten-5" #modal>
+    <div class="modal-content">
+      <h4 class="mb1">Add a position</h4>
+      <div class="input-field yellow accent-1">
+        <input formControlName="name" id="pos-name" type="text"
+          [ngClass]="{'invalid': form.get('name')?.invalid && form.get('name')?.touched}">
+        <label for="pos-name">Title</label>
+        <span *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="helper-text red-text">
+          The title should not be blank.
+        </span>
+      </div>
+      <div class="input-field yellow accent-1">
+        <input id="pos-cost" type="number" min="1" formControlName="cost"
+          [ngClass]="{'invalid': form.get('cost')?.invalid && form.get('cost')?.touched}">
+
+        <label for="pos-cost">Price</label>
+        <span *ngIf="form.get('cost')?.invalid && form.get('cost')?.touched" class="helper-text red-text">
+          Enter the correct price.
+        </span>
+      </div>
+    </div>
+    <div class="modal-footer orange lighten-5">
+      <button type="button" (click)="onCancel()" class="modal-action waves-effect waves-black btn-flat "
+        [disabled]="form.disabled">
+        Cancel
+      </button>
+      <button class="modal-action btn waves-effect light-green accent-4" type="submit" [disabled]="form.invalid || form.disabled">
+        Save
+      </button>
+    </div>
+  </div>
+</form>
