@@ -10,8 +10,9 @@ declare var M: {
     init: (
       arg0: any,
       arg1: { format: string; showClearBtn: boolean; onClose: () => void }
-    ) => any;
+    ) => MaterialDatepicker;
   };
+  TapTarget: { init: (arg0: any) => MaterialInstance };
 };
 
 export interface MaterialInstance {
@@ -21,7 +22,7 @@ export interface MaterialInstance {
 }
 
 export interface MaterialDatepicker extends MaterialInstance {
-  date?: Date
+  date?: Date;
 }
 
 const customStyles = `
@@ -65,5 +66,8 @@ export class MaterialService {
       showClearBtn: true,
       onClose,
     });
+  }
+  static initTapTarget(ref: ElementRef): MaterialInstance {
+    return M.TapTarget.init(ref.nativeElement);
   }
 }
