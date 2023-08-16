@@ -1,7 +1,7 @@
 <form class="card orange lighten-5" [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="card-content">
     <span class="card-title">Log in to the system</span>
-    <div class="input-field">
+    <div class="input-field yellow accent-1">
       <input formControlName="email" id="email" type="email"
         [ngClass]="{'invalid': form.get('email')?.invalid && form.get('email')?.touched}">
       <label for="email">Email:</label>
@@ -11,7 +11,7 @@
       </span>
 
     </div>
-    <div class="input-field">
+    <div class="input-field yellow accent-1">
       <input id="password" type="password" formControlName="password"
         [ngClass]="{'invalid': form.get('password')?.invalid && form.get('password')?.touched}">
       <label for="password">Password:</label>
@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="card-action">
-    <button type="submit" class="modal-action btn waves-effect"
+    <button type="submit" class="modal-action btn  light-green accent-4"
       [disabled]="form.invalid || form.disabled">Enter</button>
   </div>
 </form>
