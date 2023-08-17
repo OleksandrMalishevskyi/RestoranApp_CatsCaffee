@@ -7,10 +7,12 @@ const analyticsRoutes = require('./routes/analytics')
 const categoryRoutes = require('./routes/category')
 const orderRoutes = require('./routes/order')
 const positionRoutes = require('./routes/position')
-const keys = require('./config/keys')
+const dotenv = require('dotenv')
 const app = express()
 
-mongoose.connect(keys.mongoURI)
+dotenv.config()
+
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected.'))
   .catch(error => console.log(error))
 

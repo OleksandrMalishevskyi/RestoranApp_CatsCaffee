@@ -1,4 +1,4 @@
-config/keys.js
+.env
 client/.angular/cache/
 client/etc
 node_modules

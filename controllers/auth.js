@@ -1,9 +1,10 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
-const keys = require('../config/keys')
+const dotenv = require('dotenv')
 const errorHandler = require('../utils/errorHandler')
 
+dotenv.config()
 
 module.exports.login = async function(req, res) {
   const candidate = await User.findOne({email: req.body.email})
@@ -14,7 +15,7 @@ module.exports.login = async function(req, res) {
       const token = jwt.sign({
         email: candidate.email,
         userId: candidate._id
-      }, keys.jwt, {expiresIn: 60 * 60})
+      }, process.env.JWT, {expiresIn: 60 * 60})
 
       res.status(200).json({
         token: `Bearer ${token}`
